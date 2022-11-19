@@ -16,13 +16,13 @@ class ListaEncadeada:
         return "[" + str(self.cabeca) + "]"
 
 def insere_no_inicio(lista, novo_dado):
-    # 1) Cria um novo nodo com o dado a ser armazenado.
+    # 1) Cria um novo no com o dado a ser armazenado.
     novo_nodo = NodoLista(novo_dado)
 
-    # 2) Faz com que o novo nodo seja a cabeça da lista.
+    # 2) Faz com que o novo no seja a cabeça da lista.
     novo_nodo.proximo = lista.cabeca
 
-    # 3) Faz com que a cabeça da lista referencie o novo nodo.
+    # 3) Faz com que a cabeça da lista referencie o novo no.
     lista.cabeca = novo_nodo
 
 
