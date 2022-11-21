@@ -1,0 +1,22 @@
+palavras = [
+'Amarelo',
+'Amiga',
+'Amor',
+'Ave',
+'Avião',
+'Avó',
+'Balão',
+'Bebê',
+'Bolo',
+'Branco',
+'Cama',
+'Caneca',
+'Celular',
+'Céu',
+'Clube',
+'Copo',
+'Doce',
+'Elefante',
+'Escola',
+'Estojo'
+]
