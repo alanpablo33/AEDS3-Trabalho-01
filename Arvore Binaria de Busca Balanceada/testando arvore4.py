@@ -2,6 +2,7 @@
 
 import random
 from arvore04 import ArvoreBinariaBusca
+from arquivosTXT import *
 
 random.seed(77)
 
@@ -13,7 +14,7 @@ def random_arvore(size=42):
     return arvore
 
 def example_arvore():
-    valor = [61, 89, 66, 43, 51, 16, 55, 11, 79, 77, 82, 32]
+    valor = dados1
     arvore = ArvoreBinariaBusca()
     for v in valor:
         arvore.insert(v)

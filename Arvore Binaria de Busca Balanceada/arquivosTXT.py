@@ -2,11 +2,11 @@ import random
 from palavras import palavras
 
 dados1 = []
+cont = 10# Local a Testar Valores
 
 def dados_txt(): # add no TXT
     
-    cont = 10 # contador que vai dar as chaves sequencialmente para cada linha
-    for c in range(cont):
+    for c in range(cont): # contador que vai dar as chaves sequencialmente para cada linha
         chave = '{:01d}' .format(c) 
 
         lista = list(range(1)) # Numeros de 1 a 10.000, que ira entrar aleatoriamente 
@@ -27,8 +27,11 @@ def dados_txt(): # add no TXT
             arquivo.write(f'CHAVE: {l1["chave"]} - VALOR INTEIRO: {l1["valor_inteiro"]}- CHAR: {l1["char_1000"]}')
             arquivo.write('\n')
 
-def iniciar():# RODAR CODIGO
 
-    dados_txt()
+dados_txt()
 
-iniciar()
+with open('DADOS.txt', 'r') as a:
+    m = a.readlines()
+for linha in m:
+    if 'CHAVE' in linha:
+        print(linha)
