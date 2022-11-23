@@ -14,7 +14,12 @@ def random_arvore(size=42):
     return arvore
 
 def example_arvore():
-    valor = dados1
+#    with open("DADOS.txt", "r") as arquivo: #converte para lista
+#        teste = arquivo.readlines()
+#        print(teste)
+#        print('\n')
+        
+    valor = [18,7,10,33,1,25,2]
     arvore = ArvoreBinariaBusca()
     for v in valor:
         arvore.insert(v)

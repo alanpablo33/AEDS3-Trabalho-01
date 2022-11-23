@@ -24,14 +24,16 @@ def dados_txt(): # add no TXT
         
     with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
         for l1 in dados1:
-            arquivo.write(f'CHAVE: {l1["chave"]} - VALOR INTEIRO: {l1["valor_inteiro"]}- CHAR: {l1["char_1000"]}')
+            arquivo.write(f' {l1["chave"]}  : VALOR INTEIRO: {l1["valor_inteiro"]}- CHAR: {l1["char_1000"]}')
             arquivo.write('\n')
-
-
+    
 dados_txt()
 
-with open('DADOS.txt', 'r') as a:
-    m = a.readlines()
-for linha in m:
-    if 'CHAVE' in linha:
-        print(linha)
+
+
+
+
+
+
+
+
