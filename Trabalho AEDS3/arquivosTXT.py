@@ -2,12 +2,15 @@ import random
 from palavras import palavras
 
 dados1 = []
-cont = 10# Local a Testar Valores
+dados2 = []
+cont = 25# Local a Testar Valores
 
 def dados_txt(): # add no TXT
     
     for c in range(cont): # contador que vai dar as chaves sequencialmente para cada linha
-        chave = '{:01d}' .format(c) 
+        chave = '{:001d}' .format(c)
+        chave1 = '{:001d}' .format(c) 
+    
 
         lista = list(range(1)) # Numeros de 1 a 10.000, que ira entrar aleatoriamente 
         for i in lista:
@@ -27,7 +30,26 @@ def dados_txt(): # add no TXT
             arquivo.write(f' {l1["chave"]}  : VALOR INTEIRO: {l1["valor_inteiro"]}- CHAR: {l1["char_1000"]}')
             arquivo.write('\n')
     
+    with open('DADOS2.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+        for l1 in dados1:
+            arquivo.write(f' {l1["chave"]}  : VALOR INTEIRO: {l1["valor_inteiro"]}- CHAR: {l1["char_1000"]}')
+            arquivo.write('\n')
+
+    with open("DADOS2.txt", "r") as arquivo: #converte para lista
+        teste = arquivo.readlines()
+        print(teste)
+        x= random.sample(teste,len(teste)) #valores do arquivo txt DADOS2 aleatorios
+        print("\n\n\n")
+        print(x)
+        print('\n')
+        
+    with open("DADO3.txt", "a") as p: #Dados aleatorios em lista
+        p.write(str(x))
+        p.write('\n')
+        p.close()
+
 dados_txt()
+
 
 
 
