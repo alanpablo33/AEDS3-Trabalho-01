@@ -1,3 +1,4 @@
+from txt import*
 """
 Implementação dos algoritmos de busca sequencial e
 busca sentinela
