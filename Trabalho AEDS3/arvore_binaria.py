@@ -1,4 +1,8 @@
 from fila import Fila # importação de fila
+from palavras import palavras # Modulo com palavras aleatorias
+import random # função aleatorio
+import time
+import timeit
 
 ROOT= "raiz"
 class No: #classe que vai indicar os dados e direita esquesrda
@@ -80,6 +84,7 @@ class ArvoreBinaria: #arvore
             if no.direita:
                 fila.empurre(no.direita)
             print(no, end=" ")
+           
 
 # herdar a qualidades da Arvore Binaria
 class ArvoreBinariaBusca(ArvoreBinaria):
@@ -111,5 +116,108 @@ class ArvoreBinariaBusca(ArvoreBinaria):
         if valor < no.dado:
             return self._procurar(valor, no.esquerda)
         return self._procurar(valor, no.direita)
+        
 
+####################################################################################################
+#INICIO 
+
+cont = 10 # quantidade de elementos criados
+
+key = [] # chave a ser chamada para a arvore
+char = [] # palavra aleatoria
+valores_inteiros = [] # valor aleatorio
+resultados=[] # soma de todas as listas
+
+for c in range(cont): # contador que vai dar as chaves sequencialmente para cada linha
+        chave = '{:001d}' .format(c)
+        key.append(int(chave))
+
+        lista = list(range(1)) # Numeros de 1 a 10.000, que ira entrar aleatoriamente 
+        for i in lista:
+            n = random.randint(1,10000)
+            valores_inteiros.append(int(n))
+        
+        palavra = random.choice(palavras) # variavel que ira escolher uma palavra aleatoria do nosso modulo importado
+        char.append(str(palavra))
+########################################################################################
+        
+for i in range(len(key)): #percorre lista con referencia no tamanho da key
+   tupla=(key[i],char[i],valores_inteiros[i]) # juntando valores das listas
+   resultados.append(tupla) #add
+   print("\n")
+elemento = random.shuffle(resultados) # bagunça na lista
+dict = {}
+for i in range(len(resultados)):
+    dict[resultados[i][0]] = resultados[i][1:]
+
+######################################################################################
+dados1 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
+
+dados1.append({
+            'chave': resultados,            
+         })
+
+with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+        for l1 in dados1:
+            arquivo.write(f' {l1["chave"]} ')
+            arquivo.write('\n')
+            print("\n")
+
+with open("DADOS.txt", "r") as arquivo: #ler o txt
+        teste = arquivo.readlines()
+        #print(teste)
+        
+#######################################################################################
+def example_arvore():
+    valor = dict
+    arvore = ArvoreBinariaBusca()
+    for v in valor:
+        arvore.insert(v)
+    return arvore
+
+#######################################################################################
+print('\n---Ordem Simetrica---') # lista em ordem
+abb = example_arvore()
+abb.in_ordem_simetrica()
+print('\n')
+
+u = int(input("Digite: "))
+items = [u] # a busca na nossa arvore
+for elementos in items:
+    r = abb.procurar(elementos) # metodo de busca na arvore
+    if r is None:
+        print(elementos, "Não encontrado")
+    else:
+        print(r.raiz.dado, 'encontrado')
+        print(dict.get(u))
+
+    #Contador de Doração da procura na arvore com valores ordenados    
+    time.sleep(1)
+inicio = timeit.default_timer()
+fim = timeit.default_timer()
+print ('Duracao Da Procura Na Arvore Binaria Ordem Simetrica: %f' % (fim - inicio))
+    
+
+#######################################################################################
+print('\n----Ordem Aleatório---') # Orden que esta sendo inserida na arvore 
+abb.percurso_nivel()
+print("\n")
+
+u = int(input("Digite: "))
+items = [u] # a busca na nossa arvore
+for elementos in items:
+    r = abb.procurar(elementos) # metodo de busca na arvore
+    if r is None:
+        print(elementos, "Não encontrado")
+        
+    else:
+        print(r.raiz.dado, 'encontrado')
+        print(dict.get(u))
+
+    #Contador de Doração da procura na arvore com valores aleatorios    
+    time.sleep(1) #
+inicio = timeit.default_timer()
+fim = timeit.default_timer()
+print ('Duracao Da Procura Na Arvore Binaria Ordem Aleatoria: %f' % (fim - inicio))
+#######################################################################################
 

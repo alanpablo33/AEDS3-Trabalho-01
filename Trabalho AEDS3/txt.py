@@ -38,12 +38,12 @@ dados1.append({
             'char_1000':char 
          })
 
-with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT em Ordem Simetrica
         for l1 in dados1:
             arquivo.write(f' CHAVE: {l1["chave"]}  : VALOR INTEIRO: {l1["valor_inteiro"]} CHAR: {l1["char_1000"]}')
             arquivo.write('\n')
 
-with open('DADOS2.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+with open('DADOS2.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT em Ordem Aleatoria
         for l1 in dados1:
             arquivo.write(f' CHAVE: {l1["chave"]}  : VALOR INTEIRO: {l1["valor_inteiro"]} CHAR: {l1["char_1000"]}')
             arquivo.write('\n')
@@ -52,5 +52,7 @@ with open('DADOS2.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
 with open("DADOS2.txt", "r") as arquivo: #converte para lista
         teste = arquivo.readlines()
         x= random.sample(teste,len(teste)) #valores do arquivo txt DADOS2 aleatorios
+        x.append(tupla)
         print('\n')
+        print(x)
 

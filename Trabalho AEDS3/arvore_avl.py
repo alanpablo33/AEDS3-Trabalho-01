@@ -1,4 +1,11 @@
 # import random, math
+from fila import Fila # importação de fila
+from palavras import palavras # Modulo com palavras aleatorias
+import random # função aleatorio
+import time
+import timeit
+
+
 
 debugEnable = True
 
@@ -234,23 +241,75 @@ class AVLTree():
 
         return inlist
 
-    # DEBUG: Mostra a árvore via prompt de comando.
-    def display(self, level=0, pref=''):
-        self.update_heights()
-        self.update_balances()
-        if (self.node != None):
-            print ('.' * level * 3, pref, self.node.key, "(Altura: " + str(self.height) + " | FB: " + str(
-                self.balance) + ")", '[FOLHA]' if self.is_leaf() else ' ')
-            if self.node.left != None:
-                self.node.left.display(level + 1, 'LN')
-            if self.node.left != None:
-                self.node.right.display(level + 1, 'RN')
+    def procurar(self, valor): # função que ira procurar os valores selecionados
+        return self._procurar(valor, self.raiz)
 
+    def _procurar(self, valor, node):
+        if node is None:
+            return node
+        if node.data == valor:
+            return AVLTree(node)
+        if valor < node.data:
+            return self._procurar(valor, node.esquerda)
+        return self._procurar(valor, node.direita)
 
-if __name__ == "__main__":
-    a = AVLTree()
-    inlist = [15,17,20]
+        
+
+####################################################################################################
+#INICIO 
+
+cont = 25 # quantidade de elementos criados
+
+key = [] # chave a ser chamada para a arvore
+char = [] # palavra aleatoria
+valores_inteiros = [] # valor aleatorio
+resultados=[] # soma de todas as listas
+
+for c in range(cont): # contador que vai dar as chaves sequencialmente para cada linha
+        chave = '{:001d}' .format(c)
+        key.append(int(chave))
+
+        lista = list(range(1)) # Numeros de 1 a 10.000, que ira entrar aleatoriamente 
+        for i in lista:
+            n = random.randint(1,10000)
+            valores_inteiros.append(int(n))
+        
+        palavra = random.choice(palavras) # variavel que ira escolher uma palavra aleatoria do nosso modulo importado
+        char.append(str(palavra))
+        
+for i in range(len(key)): #percorre lista con referencia no tamanho da key
+   tupla=(key[i],char[i],valores_inteiros[i]) # juntando valores das listas
+   resultados.append(tupla) #add
+   print("\n")
+elemento = random.shuffle(resultados) # bagunça na lista
+dict = {}
+for i in range(len(resultados)):
+    dict[resultados[i][0]] = resultados[i][1:]
+
+######################################################################################
+
+def example_arvore():
+    inlist = dict
+    arvore = AVLTree()
     for i in inlist:
-        a.insert(i)
+        arvore.insert(i)
+    return arvore
 
-    a.display()
+print("\n\n")
+abb = example_arvore()
+
+
+
+u = int(input("Digite: "))
+items = [u] # a busca na nossa arvore
+for elementos in items:
+    r = abb.procurar(elementos) # metodo de busca na arvore
+    if r is None:
+        print(elementos, "Não encontrado")
+    else:
+        print(r.raiz.dado, 'encontrado')
+        print(dict.get(u))
+ 
+
+        
+

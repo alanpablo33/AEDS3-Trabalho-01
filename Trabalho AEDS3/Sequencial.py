@@ -1,42 +1,59 @@
-from txt import*
-"""
-Implementação dos algoritmos de busca sequencial e
-busca sentinela
-"""
+from palavras import palavras # Modulo com palavras aleatorias
+import random # função aleatorio
 
+cont = 10 # quantidade de elementos criados
+#################################################################################
+key = [] # chave a ser chamada para a arvore
+char = [] # palavra aleatoria
+valores_inteiros = [] # valor aleatorio
+resultados=[] # soma de todas as listas
 
-def sequential_search(value, array):
-    """
-    Implementação de um algoritmo de busca sequencial.
-    Argumentos:
-    value: Any. Valor a ser buscado na lista
-    array: list. lista na qual o valor será buscado
-    Retorna o índice do valor em "array" ou -1 caso não exista nela.
-    """
-    for i in range(0, len(array)):
-        if array[i] == value:
-            return i
-    return -1
+for c in range(cont): # contador que vai dar as chaves sequencialmente para cada linha
+        chave = '{:001d}' .format(c)
+        key.append(int(chave))
 
+        lista = list(range(1)) # Numeros de 1 a 10.000, que ira entrar aleatoriamente 
+        for i in lista:
+            n = random.randint(1,10000)
+            valores_inteiros.append(int(n))
+        
+        palavra = random.choice(palavras) # variavel que ira escolher uma palavra aleatoria do nosso modulo importado
+        char.append(str(palavra))
+        
 
-def sentinel_search(value, array):
-    """
-    Implementação de um algoritmo de busca sentinela.
-    Argumentos:
-    value: Any. Valor a ser buscado na lista
-    array: list. lista na qual o valor será buscado
-    Retorna o índice do valor em "array" ou -1 caso não exista nela.
-    """
-    array.append(value)
-    index = 0
-    while array[index] != value:
-        index += 1
-    array.pop()
-    if index == len(array) - 1:
-        return -1
-    return index
+for i in range(len(key)): #percorre lista con referencia no tamanho da key
+   tupla=(key[i],char[i],valores_inteiros[i]) # juntando valores das listas
+   resultados.append(tupla) #add
+print('\n')
 
+dict = {}
+for i in range(len(resultados)):
+    dict[resultados[i][0]] = resultados[i][1:]
 
-some_list = [1, 4, 5, 2, 42, 34, 54, 98, 89, 78, 67]
-print(sequential_search(54, some_list))
-print(sentinel_search(98, some_list))
+######################################################################################
+dados2 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
+
+dados2.append({
+            'chave': resultados,
+            
+         })
+
+with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+        for l1 in dados2:
+            arquivo.write(f' {l1["chave"]} ')
+            arquivo.write('\n')
+            print("\n")
+
+with open("DADOS.txt", "r") as arquivo: #ler o txt
+        teste = arquivo.readlines()
+        print(teste)
+        
+#######################################################################################
+
+for x in dict:
+    u = int(input("Digite "))
+    if x == u == key:
+        print(x)
+    else:
+        print("Não")
+    

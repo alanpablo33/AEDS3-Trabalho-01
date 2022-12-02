@@ -12,7 +12,8 @@ for v in valor:
 bst.in_ordem_simetrica() # coloca em ordem simetrica 
 
 print("\n")
-items = [0,3,4,23,77,80] # a busca na nossa arvore
+u = int(input("Digite: "))
+items = [u] # a busca na nossa arvore
 for elementos in items:
     r = bst.procurar(elementos)
     if r is None:
