@@ -240,25 +240,26 @@ class AVLTree():
             inlist.append(i)
 
         return inlist
+    
+    def procura(self, key):
+        tree = self.node
 
-    def procurar(self, valor): # função que ira procurar os valores selecionados
-        return self._procurar(valor, self.raiz)
+        # Se a chave for menor, procurar nas subárvores a esquerda
+        if key < tree.key:
+            self.node.left.procura(key)
 
-    def _procurar(self, valor, node):
-        if node is None:
-            return node
-        if node.data == valor:
-            return AVLTree(node)
-        if valor < node.data:
-            return self._procurar(valor, node.esquerda)
-        return self._procurar(valor, node.direita)
-
+        # Se a chave for maior, procurar nas subárvores a direita
+        elif key > tree.key:
+            self.node.right.procura(key)
         
+        # Se a chave já existir na árvore
+        else:
+            debug("Nó (" + str(key) + ") Encontrado Na Arvore.")
 
 ####################################################################################################
 #INICIO 
 
-cont = 25 # quantidade de elementos criados
+cont = 1000 # quantidade de elementos criados
 
 key = [] # chave a ser chamada para a arvore
 char = [] # palavra aleatoria
@@ -297,18 +298,13 @@ def example_arvore():
 
 print("\n\n")
 abb = example_arvore()
+print("\n\n")
 
-
-
-u = int(input("Digite: "))
-items = [u] # a busca na nossa arvore
-for elementos in items:
-    r = abb.procurar(elementos) # metodo de busca na arvore
-    if r is None:
-        print(elementos, "Não encontrado")
-    else:
-        print(r.raiz.dado, 'encontrado')
-        print(dict.get(u))
+abb.procura(int(input("Digite o Valor a Buscar: "))) #Buscando valor na arvore
+time.sleep(1) #
+inicio = timeit.default_timer()
+fim = timeit.default_timer()
+print ('Duracao Da Procura Na Arvore Binaria Ordem Aleatoria: %f' % (fim - inicio))
  
 
         
