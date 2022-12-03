@@ -258,9 +258,7 @@ class AVLTree():
 
 ####################################################################################################
 #INICIO 
-
 cont = 1000 # quantidade de elementos criados
-
 key = [] # chave a ser chamada para a arvore
 char = [] # palavra aleatoria
 valores_inteiros = [] # valor aleatorio
@@ -288,7 +286,6 @@ for i in range(len(resultados)):
     dict[resultados[i][0]] = resultados[i][1:]
 
 ######################################################################################
-
 def example_arvore():
     inlist = dict
     arvore = AVLTree()
@@ -300,11 +297,11 @@ print("\n\n")
 abb = example_arvore()
 print("\n\n")
 
-abb.procura(int(input("Digite o Valor a Buscar: "))) #Buscando valor na arvore
+abb.procura(int(input("Digite o valor de Buscar: "))) #Buscando valor na arvore
 time.sleep(1) #
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
-print ('Duracao Da Procura Na Arvore Binaria Ordem Aleatoria: %f' % (fim - inicio))
+print ('Duracao Da Procura Na Arvore AVL Ordem Aleatoria: %f' % (fim - inicio))
  
 
         

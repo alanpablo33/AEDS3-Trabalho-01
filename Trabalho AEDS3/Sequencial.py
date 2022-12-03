@@ -1,7 +1,9 @@
 from palavras import palavras # Modulo com palavras aleatorias
 import random # função aleatorio
+import time
+import timeit
 
-cont = 10 # quantidade de elementos criados
+cont = 100000 # quantidade de elementos criados
 #################################################################################
 key = [] # chave a ser chamada para a arvore
 char = [] # palavra aleatoria
@@ -29,31 +31,46 @@ print('\n')
 dict = {}
 for i in range(len(resultados)):
     dict[resultados[i][0]] = resultados[i][1:]
+print(dict)
 
 ######################################################################################
-dados2 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
+#dados2 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
 
-dados2.append({
-            'chave': resultados,
+#dados2.append({
+#            'chave': resultados,
             
-         })
+#         })
 
-with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
-        for l1 in dados2:
-            arquivo.write(f' {l1["chave"]} ')
-            arquivo.write('\n')
-            print("\n")
+#with open('DADOS-SEQUENCIAL.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+#        for l1 in dados2:
+#            arquivo.write(f' {l1["chave"]} ')
+#            arquivo.write('\n')
+#            print("\n")
 
-with open("DADOS.txt", "r") as arquivo: #ler o txt
-        teste = arquivo.readlines()
-        print(teste)
+#with open("DADOS.txt", "r") as arquivo: #ler o txt
+#        teste = arquivo.readlines()
+#        print(teste)
         
 #######################################################################################
 
-for x in dict:
+for elemento in dict:
     u = int(input("Digite "))
-    if x == u == key:
-        print(x)
+    if elemento is None:
+        print(u, "Não encontrado")
+        time.sleep(1) 
+
+        inicio = timeit.default_timer()
+        fim = timeit.default_timer()
+        print ('Duracao Da Procura Sequencial Ordem Aleatoria: %f' % (fim - inicio))
+
+        break
     else:
-        print("Não")
-    
+        print(u, 'Encontrado')
+        print(dict.get(u))
+        time.sleep(1) 
+
+        inicio = timeit.default_timer()
+        fim = timeit.default_timer()
+        print ('Duracao Da Procura Sequencial Aleatoria: %f' % (fim - inicio))
+
+        break

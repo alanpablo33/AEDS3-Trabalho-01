@@ -157,13 +157,13 @@ dados1.append({
             'chave': resultados,            
          })
 
-with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+with open('DADOS_Arvore_Binaria.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
         for l1 in dados1:
             arquivo.write(f' {l1["chave"]} ')
             arquivo.write('\n')
             print("\n")
 
-with open("DADOS.txt", "r") as arquivo: #ler o txt
+with open("DADOS_Arvore_Binaria.txt", "r") as arquivo: #ler o txt
         teste = arquivo.readlines()
         #print(teste)
         
