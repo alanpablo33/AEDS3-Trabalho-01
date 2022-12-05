@@ -3,7 +3,7 @@ import random # função aleatorio
 import time
 import timeit
 
-cont = 100000 # quantidade de elementos criados
+cont = 100 # quantidade de elementos criados
 #################################################################################
 key = [] # chave a ser chamada para a arvore
 char = [] # palavra aleatoria
@@ -47,7 +47,7 @@ with open('DADOS-SEQUENCIAL.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIV
             arquivo.write('\n')
             print("\n")
 
-with open("DADOS.txt", "r") as arquivo: #ler o txt
+with open("DADOS-SEQUENCIAL.txt", "r") as arquivo: #ler o txt
         teste = arquivo.readlines()
         print(teste)
         
@@ -63,7 +63,7 @@ for elemento in dict:
         fim = timeit.default_timer()
         print ('Duracao Da Procura Sequencial Ordem Aleatoria: %f' % (fim - inicio))
 
-        break
+        
     else:
         print(u, 'Encontrado')
         print(dict.get(u))
