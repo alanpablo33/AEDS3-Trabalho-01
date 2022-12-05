@@ -297,7 +297,9 @@ print("\n\n")
 abb = example_arvore()
 print("\n\n")
 
-abb.procura(int(input("Digite o valor de Buscar: "))) #Buscando valor na arvore
+u = int(input("Digite o valor de Buscar: "))
+abb.procura(u) #Buscando valor na arvore
+print(dict.get(u))
 time.sleep(1) #
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
