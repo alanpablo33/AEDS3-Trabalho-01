@@ -286,6 +286,23 @@ for i in range(len(resultados)):
     dict[resultados[i][0]] = resultados[i][1:]
 
 ######################################################################################
+
+dados1 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
+
+dados1.append({
+            'chave': resultados,            
+         })
+
+with open('DADOS_Arvore_AVL.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+        for l1 in dados1:
+            arquivo.write(f' {l1["chave"]} ')
+            arquivo.write('\n')
+            print("\n")
+
+with open("DADOS_Arvore_AVL.txt", "r") as arquivo: #ler o txt
+        teste = arquivo.readlines()
+        #print(teste)
+######################################################################################
 def example_arvore():
     inlist = dict
     arvore = AVLTree()

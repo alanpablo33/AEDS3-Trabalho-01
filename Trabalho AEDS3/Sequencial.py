@@ -34,22 +34,22 @@ for i in range(len(resultados)):
 print(dict)
 
 ######################################################################################
-#dados2 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
+dados2 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
 
-#dados2.append({
-#            'chave': resultados,
+dados2.append({
+            'chave': resultados,
             
-#         })
+         })
 
-#with open('DADOS-SEQUENCIAL.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
-#        for l1 in dados2:
-#            arquivo.write(f' {l1["chave"]} ')
-#            arquivo.write('\n')
-#            print("\n")
+with open('DADOS-SEQUENCIAL.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+        for l1 in dados2:
+            arquivo.write(f' {l1["chave"]} ')
+            arquivo.write('\n')
+            print("\n")
 
-#with open("DADOS.txt", "r") as arquivo: #ler o txt
-#        teste = arquivo.readlines()
-#        print(teste)
+with open("DADOS.txt", "r") as arquivo: #ler o txt
+        teste = arquivo.readlines()
+        print(teste)
         
 #######################################################################################
 
