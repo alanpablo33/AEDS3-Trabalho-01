@@ -62,6 +62,7 @@ inlist2 = { x[0]: (x[1], x[2])  for x in teste2}
 print("\n")
 
 u = int(input("Digite o Valor a ser BUSCADO na Lista Simetrica: "))
+ini = time.time()
 for elemento in inlist:
     if elemento == u:
         print(">>>>> Ordem Simetrica <<<<<")
@@ -73,10 +74,13 @@ for elemento in inlist:
         fim = timeit.default_timer()
         print ('Duracao Da Procura Sequencial Ordem Simetrica: %f' % (fim - inicio))
         break
+fim = time.time()
+print ("TEMPO-Ordem Simetrica: ", (fim-ini) ,"Segundos")
 
 print("\n")
 
 t = int(input("Digite o Valor a ser BUSCADO Na Lista Aleatoria: "))
+inii = time.time()
 for elemento2 in inlist2:
     if elemento2 == t:
         print(">>>>> Ordem Aleatoria <<<<<")
@@ -88,5 +92,6 @@ for elemento2 in inlist2:
         fim = timeit.default_timer()
         print ('Duracao Da Procura Sequencial Ordem Aleatoria: %f' % (fim - inicio))
         break
-    
+fimm = time.time()
+print ("TEMPO-Ordem Aleatoria: ",(fimm-inii),"Segundos")
         

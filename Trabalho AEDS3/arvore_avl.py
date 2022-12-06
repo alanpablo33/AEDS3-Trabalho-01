@@ -317,6 +317,7 @@ abb = example_arvore()
 print("\n")
 
 u = int(input("Digite o valor de Buscar: "))
+ini = time.time()
 print(">>>> Ordem Simetrica <<<<")
 abb.procura(u) #Buscando valor na arvore
 print(dict.get(u))
@@ -324,6 +325,8 @@ time.sleep(1) #
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
 print ('Duracao Da Procura Na Arvore AVL Ordem Simetrica: %f' % (fim - inicio))
+fim = time.time()
+print ("TEMPO-Ordem Simetrica: ", (fim-ini) ,"Segundos")
 print("\n")
 ########################################################################################
 print("\n")
@@ -331,6 +334,7 @@ abb2 = example_arvore2()
 print("\n")
 
 u = int(input("Digite o valor de Buscar: "))
+inii = time.time()
 print(">>>> Ordem Aleatoria <<<<")
 abb2.procura(u) #Buscando valor na arvore
 print(dict.get(u))
@@ -338,6 +342,8 @@ time.sleep(1) #
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
 print ('Duracao Da Procura Na Arvore AVL Ordem Aleatoria: %f' % (fim - inicio))
+fimm = time.time()
+print ("TEMPO-Ordem Aleatoria: ", (fimm-inii) ,"Segundos")
 print("\n")
 
         

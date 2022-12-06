@@ -169,6 +169,7 @@ print('\n')
 
 u = int(input("Digite o Valor a ser BUSCADO:: "))
 items = [u] # a busca na nossa arvore
+ini = time.time()
 for elementos in items:
     r = abb.procurar(elementos) # metodo de busca na arvore
     if r is None:
@@ -181,7 +182,9 @@ for elementos in items:
     time.sleep(1)
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
-print ('Duracao Da Procura Na Arvore Binaria Ordem Simetrica: %f' % (fim - inicio))
+print ('Duracao Da Procura Na Arvore Binaria Ordem Simetrica: %5f' % (fim - inicio))
+fim = time.time()
+print ("TEMPO-Ordem Simetrica: ", (fim-ini) ,"Segundos")
     
 #######################################################################################
 print('\n----Ordem Aleatório---') # Orden que esta sendo inserida na arvore 
@@ -190,6 +193,7 @@ print("\n")
 
 u = int(input("Digite o Valor a ser BUSCADO:: "))
 items = [u] # a busca na nossa arvore
+inii = time.time()
 for elementos in items:
     r = abb.procurar(elementos) # metodo de busca na arvore
     if r is None:
@@ -204,5 +208,7 @@ for elementos in items:
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
 print ('Duracao Da Procura Na Arvore Binaria Ordem Aleatoria: %f' % (fim - inicio))
+fimm = time.time()
+print ("TEMPO-Ordem Aleatoria: ", (fimm-inii) ,"Segundos")
 #######################################################################################
 
