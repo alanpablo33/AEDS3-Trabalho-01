@@ -259,6 +259,7 @@ key = [] # chave a ser chamada para a arvore
 char = [] # palavra aleatoria
 valores_inteiros = [] # valor aleatorio
 resultados=[] # soma de todas as listas
+resultados2 =[] # soma de todas as listas aleatorias
 
 for c in range(cont): # contador que vai dar as chaves sequencialmente para cada linha
         chave = '{:001d}' .format(c)
@@ -275,11 +276,15 @@ for c in range(cont): # contador que vai dar as chaves sequencialmente para cada
 for i in range(len(key)): #percorre lista con referencia no tamanho da key
    tupla=(key[i],char[i],valores_inteiros[i]) # juntando valores das listas
    resultados.append(tupla) #add
-elemento = random.shuffle(resultados) # bagunça na lista
+   resultados2.append(tupla) #add
+elemento = random.shuffle(resultados2) # bagunça na lista
 #transforma a lista em biblioteca
 dict = {}
 for i in range(len(resultados)):
     dict[resultados[i][0]] = resultados[i][1:]
+dict2 = {}
+for i in range(len(resultados2)):
+    dict[resultados2[i][0]] = resultados2[i][1:]
 
 # JSON para escrever os dados do arquivo no TXT
 json.dump(resultados, open('DADOS_Arvore_AVL.txt', 'w'))
@@ -292,20 +297,48 @@ def example_arvore():
     for v in inlist:
         arvore.insert(v)
     return arvore
+
+#####################################################################################
+# JSON para escrever os dados do arquivo no TXT
+json.dump(resultados2, open('DADOS_Arvore_AVL_Aleatorio.txt', 'w'))
+    
+def example_arvore2():
+#ler o arquivo txt criado usando o json
+    teste2 = json.load(open("DADOS_Arvore_AVL_Aleatorio.txt", "r"))
+    inlist2 = { x[0]: (x[1], x[2])  for x in teste2 }
+    arvore = AVLTree()
+    for v in inlist2:
+        arvore.insert(v)
+    return arvore
+
 ######################################################################################
 print("\n")
 abb = example_arvore()
 print("\n")
 
 u = int(input("Digite o valor de Buscar: "))
+print(">>>> Ordem Simetrica <<<<")
 abb.procura(u) #Buscando valor na arvore
+print(dict.get(u))
+time.sleep(1) #
+inicio = timeit.default_timer()
+fim = timeit.default_timer()
+print ('Duracao Da Procura Na Arvore AVL Ordem Simetrica: %f' % (fim - inicio))
+print("\n")
+########################################################################################
+print("\n")
+abb2 = example_arvore2()
+print("\n")
+
+u = int(input("Digite o valor de Buscar: "))
+print(">>>> Ordem Aleatoria <<<<")
+abb2.procura(u) #Buscando valor na arvore
 print(dict.get(u))
 time.sleep(1) #
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
 print ('Duracao Da Procura Na Arvore AVL Ordem Aleatoria: %f' % (fim - inicio))
 print("\n")
- 
 
         
 
