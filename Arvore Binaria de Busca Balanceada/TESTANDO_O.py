@@ -3,7 +3,8 @@ from palavras import palavras # Modulo com palavras aleatorias
 import random # função aleatorio
 import time
 import timeit
-import json
+
+
 
 ROOT= "raiz"
 class No: #classe que vai indicar os dados e direita esquesrda
@@ -121,43 +122,65 @@ class ArvoreBinariaBusca(ArvoreBinaria):
 
 ####################################################################################################
 #INICIO 
-cont = int(input("Digite o Valor de Vezes a ser Processador os Dados:  ")) # quantidade de elementos criados
-key = [] # chave a ser chamada para a arvore
-char = [] # palavra aleatoria
-valores_inteiros = [] # valor aleatorio
-resultados=[] # soma de todas as listas
+dados1 = []
+dados2 = []
+cont = 25# Local a Testar Valores
 
+
+    
 for c in range(cont): # contador que vai dar as chaves sequencialmente para cada linha
         chave = '{:001d}' .format(c)
-        key.append(int(chave))
+        chave1 = '{:001d}' .format(c) 
+    
 
         lista = list(range(1)) # Numeros de 1 a 10.000, que ira entrar aleatoriamente 
         for i in lista:
             n = random.randint(1,10000)
-            valores_inteiros.append(int(n))
         
         palavra = random.choice(palavras) # variavel que ira escolher uma palavra aleatoria do nosso modulo importado
-        char.append(str(palavra))
         
-for i in range(len(key)): #percorre lista con referencia no tamanho da key
-   tupla=(key[i],char[i],valores_inteiros[i]) # juntando valores das listas
-   resultados.append(tupla) #add
-elemento = random.shuffle(resultados) # bagunça na lista
-
-#transforma lista em Biblioteca
-dict = {}
-for i in range(len(resultados)):
-    dict[resultados[i][0]] = resultados[i][1:]
-
-# JSON para escrever os dados do arquivo no TXT
-json.dump(resultados, open('DADOS_Arvore_BINARIA.txt', 'w'))
+        #lista a ser preenchida com CHAVE,INTEIRO e CHAR
+        dados1.append({
+            'chave': chave,
+            'valor_inteiro': n,
+            'char_1000':palavra 
+         })
+        
+with open('DADOS.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+        for l1 in dados1:
+            arquivo.write(f' {l1["chave"]}  : VALOR INTEIRO: {l1["valor_inteiro"]}- CHAR: {l1["char_1000"]}')
+            arquivo.write('\n')
     
+with open('DADOS2.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
+        for l1 in dados1:
+            arquivo.write(f' {l1["chave"]}  : VALOR INTEIRO: {l1["valor_inteiro"]}- CHAR: {l1["char_1000"]}')
+            arquivo.write('\n')
+
+with open("DADOS2.txt", "r") as arquivo: #converte para lista
+        teste = arquivo.readlines()
+        print(teste)
+        x= random.sample(teste,len(teste)) #valores do arquivo txt DADOS2 aleatorios
+        print("\n\n\n")
+        print(x)
+        print('\n')
+        
+with open("DADO3.txt", "a") as p: #Dados aleatorios em lista
+        p.write(str(x))
+        p.write('\n')
+        p.close()
+
+
+dict = {}
+for i in range(len(x)):
+    dict[x[i][0]] = x[i][1:]
+
+######################################################################################
+
+#######################################################################################
 def example_arvore():
-#ler o arquivo txt criado usando o json
-    teste = json.load(open("DADOS_Arvore_BINARIA.txt", "r"))
-    inlist = { x[0]: (x[1], x[2])  for x in teste }
+    valor = dict
     arvore = ArvoreBinariaBusca()
-    for v in inlist:
+    for v in valor:
         arvore.insert(v)
     return arvore
 
@@ -167,7 +190,7 @@ abb = example_arvore()
 abb.in_ordem_simetrica()
 print('\n')
 
-u = int(input("Digite o Valor a ser BUSCADO:: "))
+u = int(input("Digite: "))
 items = [u] # a busca na nossa arvore
 for elementos in items:
     r = abb.procurar(elementos) # metodo de busca na arvore
@@ -183,12 +206,13 @@ inicio = timeit.default_timer()
 fim = timeit.default_timer()
 print ('Duracao Da Procura Na Arvore Binaria Ordem Simetrica: %f' % (fim - inicio))
     
+
 #######################################################################################
 print('\n----Ordem Aleatório---') # Orden que esta sendo inserida na arvore 
 abb.percurso_nivel()
 print("\n")
 
-u = int(input("Digite o Valor a ser BUSCADO:: "))
+u = int(input("Digite: "))
 items = [u] # a busca na nossa arvore
 for elementos in items:
     r = abb.procurar(elementos) # metodo de busca na arvore
@@ -196,7 +220,7 @@ for elementos in items:
         print(elementos, "Não encontrado")
         
     else:
-        print(r.raiz.dado, 'Encontrado')
+        print(r.raiz.dado, 'encontrado')
         print(dict.get(u))
 
     #Contador de Doração da procura na arvore com valores aleatorios    

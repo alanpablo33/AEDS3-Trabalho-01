@@ -2,9 +2,10 @@ from palavras import palavras # Modulo com palavras aleatorias
 import random # função aleatorio
 import time
 import timeit
+import json
 
-cont = 100 # quantidade de elementos criados
-#################################################################################
+cont = int(input("Digite o Valor de Vezes a ser Processador os Dados:  ")) # quantidade de elementos criados
+print("\n")
 key = [] # chave a ser chamada para a arvore
 char = [] # palavra aleatoria
 valores_inteiros = [] # valor aleatorio
@@ -21,56 +22,41 @@ for c in range(cont): # contador que vai dar as chaves sequencialmente para cada
         
         palavra = random.choice(palavras) # variavel que ira escolher uma palavra aleatoria do nosso modulo importado
         char.append(str(palavra))
-        
 
+      #recebe valores e joga dentro de uma lista com tupla  
 for i in range(len(key)): #percorre lista con referencia no tamanho da key
    tupla=(key[i],char[i],valores_inteiros[i]) # juntando valores das listas
    resultados.append(tupla) #add
-print('\n')
+aleatorio = random.shuffle(resultados) # bagunça na lista
+print(aleatorio)
 
+
+#transforma lista em Biblioteca
 dict = {}
 for i in range(len(resultados)):
     dict[resultados[i][0]] = resultados[i][1:]
-print(dict)
 
-######################################################################################
-dados2 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
+#######################################
+# JSON para escrever os dados do arquivo no TXT
+json.dump(resultados, open('DADOS_SEQUENCIAL.txt', 'w'))
+    
+#ler o arquivo txt criado usando o json
+teste = json.load(open("DADOS_SEQUENCIAL.txt", "r"))
+inlist = { x[0]: (x[1], x[2])  for x in teste }
+u = int(input("Digite o Valor a ser BUSCADO: "))
+print("\n")
 
-dados2.append({
-            'chave': resultados,
-            
-         })
+for elemento in inlist:
+    if elemento == u:
+        print(">>>>> Ordem Simetrica <<<<<")
+        print("Chave de valor: ",u, "Encontrado")
+        print(dict.get(u))
 
-with open('DADOS-SEQUENCIAL.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
-        for l1 in dados2:
-            arquivo.write(f' {l1["chave"]} ')
-            arquivo.write('\n')
-            print("\n")
-
-with open("DADOS-SEQUENCIAL.txt", "r") as arquivo: #ler o txt
-        teste = arquivo.readlines()
-        print(teste)
-        
-#######################################################################################
-
-for elemento in dict:
-    u = int(input("Digite "))
-    if elemento is None:
-        print(u, "Não encontrado")
         time.sleep(1) 
-
         inicio = timeit.default_timer()
         fim = timeit.default_timer()
         print ('Duracao Da Procura Sequencial Ordem Aleatoria: %f' % (fim - inicio))
-
-        
-    else:
-        print(u, 'Encontrado')
-        print(dict.get(u))
-        time.sleep(1) 
-
-        inicio = timeit.default_timer()
-        fim = timeit.default_timer()
-        print ('Duracao Da Procura Sequencial Aleatoria: %f' % (fim - inicio))
-
         break
+else:
+    print("Não Encontrado!")
+        

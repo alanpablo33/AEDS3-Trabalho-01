@@ -4,15 +4,12 @@ from palavras import palavras # Modulo com palavras aleatorias
 import random # função aleatorio
 import time
 import timeit
-
-
+import json
 
 debugEnable = True
-
 def debug(string):
     if debugEnable is True:
         print(string)
-
 
 class Node():
     # Construtor do Nó
@@ -29,7 +26,6 @@ class Node():
     def getBalance(self):
         if self.left and self.right:
             return AVLTree.update_heights(self, True)
-
 
 class AVLTree():
     # Construtor da Árvore
@@ -258,7 +254,7 @@ class AVLTree():
 
 ####################################################################################################
 #INICIO 
-cont = 1000 # quantidade de elementos criados
+cont = int(input("Digite o Valor de Vezes a ser Processador os Dados:  ")) # quantidade de elementos criados
 key = [] # chave a ser chamada para a arvore
 char = [] # palavra aleatoria
 valores_inteiros = [] # valor aleatorio
@@ -279,40 +275,27 @@ for c in range(cont): # contador que vai dar as chaves sequencialmente para cada
 for i in range(len(key)): #percorre lista con referencia no tamanho da key
    tupla=(key[i],char[i],valores_inteiros[i]) # juntando valores das listas
    resultados.append(tupla) #add
-   print("\n")
 elemento = random.shuffle(resultados) # bagunça na lista
+#transforma a lista em biblioteca
 dict = {}
 for i in range(len(resultados)):
     dict[resultados[i][0]] = resultados[i][1:]
 
-######################################################################################
-
-dados1 = [] # AQUI ESTA O PROBLEMA!!!!!!!!!!!!!!!!
-
-dados1.append({
-            'chave': resultados,            
-         })
-
-with open('DADOS_Arvore_AVL.txt', 'a') as arquivo: # ENVIANDO TUDO PARA O ARQUIVO TXT
-        for l1 in dados1:
-            arquivo.write(f' {l1["chave"]} ')
-            arquivo.write('\n')
-            print("\n")
-
-with open("DADOS_Arvore_AVL.txt", "r") as arquivo: #ler o txt
-        teste = arquivo.readlines()
-        #print(teste)
-######################################################################################
+# JSON para escrever os dados do arquivo no TXT
+json.dump(resultados, open('DADOS_Arvore_AVL.txt', 'w'))
+    
 def example_arvore():
-    inlist = dict
+#ler o arquivo txt criado usando o json
+    teste = json.load(open("DADOS_Arvore_AVL.txt", "r"))
+    inlist = { x[0]: (x[1], x[2])  for x in teste }
     arvore = AVLTree()
-    for i in inlist:
-        arvore.insert(i)
+    for v in inlist:
+        arvore.insert(v)
     return arvore
-
-print("\n\n")
+######################################################################################
+print("\n")
 abb = example_arvore()
-print("\n\n")
+print("\n")
 
 u = int(input("Digite o valor de Buscar: "))
 abb.procura(u) #Buscando valor na arvore
@@ -321,6 +304,7 @@ time.sleep(1) #
 inicio = timeit.default_timer()
 fim = timeit.default_timer()
 print ('Duracao Da Procura Na Arvore AVL Ordem Aleatoria: %f' % (fim - inicio))
+print("\n")
  
 
         
